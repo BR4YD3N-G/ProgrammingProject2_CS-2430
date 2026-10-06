@@ -66,3 +66,12 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Zed Files
+.zed/
+
+# Clion Files
+.clion/
+
+# Apple cache files
+.DS_Store
