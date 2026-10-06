@@ -1,7 +1,15 @@
 # Project root CMakeLists.txt for ProgrammingProject2_CS-2430
 # Link to cmake website/documentation: "https://cmake.org"
-cmake_minimum_required(VERSION 3.26) # Use CMake 3.26 or later
-project(ProgrammingProject2 LANGUAGES CXX) # Define Project Name and Language
+cmake_minimum_required(VERSION 4.0) # Use CMake 4.0 or later
+
+# Define Project Metadata
+project(
+  ProgrammingProject2
+  VERSION 1.0
+  DESCRIPTION "Programming Project 2 - CS 2430"
+  HOMEPAGE_URL "https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430"
+  LANGUAGES CXX
+  )
 
 # Global Configuration
 set(CMAKE_CXX_STANDARD 23)
