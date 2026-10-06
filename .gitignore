@@ -67,11 +67,15 @@ vcpkg_installed/
 Testing/
 .cache/
 
+# IDE Cache files
+.clangd/
+
 # Zed Files
-.zed/
+.zed/workspace
 
 # Clion Files
 .clion/
 
-# Apple cache files
+# OS Metadata files
 .DS_Store
+Thumbs.db

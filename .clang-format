@@ -1,0 +1,35 @@
+# .clang-format
+---
+Language: Cpp
+BasedOnStyle: LLVM
+
+# Indentation and Spacing Architecture
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+
+# Custom Brace Alignments
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: false
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: true
+  BeforeElse: false
+  BeforeWhile: false
+
+# Pointer formatting (e.g., standardizes 'int* my_ptr;' instead of 'int * my_ptr;')
+PointerAlignment: Left
+DerivePointerAlignment: false
+
+# Keeps source directories readable by organizing headers alphabetically
+SortIncludes: true
+
+# Clean layout restrictions
+SpaceAfterCStyleCast: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+...

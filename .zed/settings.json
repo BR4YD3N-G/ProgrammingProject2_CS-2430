@@ -1,0 +1,17 @@
+{
+  "format_on_save": "on",
+  "lsp": {
+    "clangd": {
+      "initialization_options": {
+        "fallbackFlags": ["-std=c++23"],
+      },
+      "binary": {
+        "arguments": [
+          "--compile-commands-dir=build",
+          "--clang-tidy",
+          "--header-insertion=never",
+        ],
+      },
+    },
+  },
+}
