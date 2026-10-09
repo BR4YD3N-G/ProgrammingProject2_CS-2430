@@ -1,10 +1,6 @@
-# Title Block
-
-team name;
-team members;
-course (CS 2430);
-semester;
-project title.
+Coding Cadets
+Brayden Graham, Thaddeus Schelp, Todd Dharni
+CS 2430, Semester 1, Project 2
 
 # Introduction (1–2 paragraphs)
 

@@ -7,11 +7,11 @@
 
 ## Team Info
 
-- **Course / Section:** CS 2430-___
-- **Project:** Programming Project 1
-- **Team #:** ____
-- **Repo URL:** ____
-- **Submission Date:** ____
+- **Course / Section:** CS 2430
+- **Project:** Programming Project 2
+- **Team #:** 3
+- **Repo URL:** https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/tree/main
+- **Submission Date:** Oct 23rd, 2026
 
 ## Evidence Link Conventions (choose one and be consistent)
 
