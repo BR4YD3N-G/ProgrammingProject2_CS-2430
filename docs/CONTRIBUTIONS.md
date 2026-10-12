@@ -10,7 +10,7 @@
 - **Course / Section:** CS 2430-___
 - **Project:** Programming Project 1
 - **Team #:** ____
-- **Repo URL:** ____
+- **Repo URL:** ___
 - **Submission Date:** ____
 
 ## Evidence Link Conventions (choose one and be consistent)
