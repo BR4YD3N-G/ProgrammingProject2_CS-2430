@@ -4,5 +4,5 @@
 
 echo Running the compiled executable...
 cd build
-start "..."
+start "build\src\ProgrammingProject2"
 cd ..
