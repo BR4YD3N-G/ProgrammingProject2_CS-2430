@@ -19,30 +19,30 @@ int main()
     // Ordinary Sets (Universal Set size n = 10)
 
     // --- Overlapping Sets ---
-    Set A1{'A', {1, 1, 1, 0, 1, 0, 1, 0, 0, 0}};
-    Set B1{'B', {0, 0, 1, 1, 1, 1, 0, 1, 0, 0}};
+    Set A1{1, 1, 1, 0, 1, 0, 1, 0, 0, 0};
+    Set B1{0, 0, 1, 1, 1, 1, 0, 1, 0, 0};
 
     std::cout << "--- TEST CASE 1 (Overlapping Sets) ---\n";
     std::cout << CheckSet::runSetCheck(A1, B1, 10) << "\n";
 
     // --- Disjoint Sets ---
-    Set A2{'A', {1, 1, 1, 0, 0, 0, 0, 0, 0, 0}};
-    Set B2{'B', {0, 0, 0, 0, 0, 0, 0, 0, 1, 1}};
+    Set A2{1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
+    Set B2{0, 0, 0, 0, 0, 0, 0, 0, 1, 1};
 
     std::cout << "--- TEST CASE 2 (Disjoint Sets) ---\n";
     std::cout << CheckSet::runSetCheck(A2, B2, 10) << "\n";
 
     // --- Relationship (A c B) ---
-    Set A3{'A', {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}};
-    Set B3{'B', {0, 1, 1, 1, 1, 1, 0, 0, 0, 0}};
+    Set A3{0, 1, 0, 1, 0, 1, 0, 0, 0, 0};
+    Set B3{0, 1, 1, 1, 1, 1, 0, 0, 0, 0};
 
     std::cout << "--- TEST CASE 3 (Subset Relationship) ---\n";
     std::cout << CheckSet::runSetCheck(A3, B3, 10) << "\n";
 
     // Multisets / Bags
 
-    Set mA{'A', {3, 2, 0, 1, 0, 4, 0, 0, 0, 0}};
-    Set mB{'B', {1, 4, 2, 3, 0, 0, 0, 0, 0, 0}};
+    Set mA{3, 2, 0, 1, 0, 4, 0, 0, 0, 0};
+    Set mB{1, 4, 2, 3, 0, 0, 0, 0, 0, 0};
 
     std::cout << "--- MULTISET TEST CASE ---\n";
     std::cout << CheckSet::runMultisetCheck(mA, mB) << "\n";
