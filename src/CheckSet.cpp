@@ -13,7 +13,7 @@
 namespace Project2::CheckSet {
 
 // Helpers
-static std::string toBitString(const std::vector<int>& contents)
+static std::string toBitString(const std::vector<uint32_t>& contents)
 {
     std::string s = "[";
     for (size_t i = 0; i < contents.size(); ++i) {
@@ -26,7 +26,7 @@ static std::string toBitString(const std::vector<int>& contents)
     return s;
 }
 
-static std::string toElementListing(const std::vector<int>& contents)
+static std::string toElementListing(const std::vector<uint32_t>& contents)
 {
     std::string s = "{";
     bool first = true;
@@ -43,7 +43,7 @@ static std::string toElementListing(const std::vector<int>& contents)
     return first ? "∅" : s;
 }
 
-static std::string toMultisetListing(const std::vector<int>& contents)
+static std::string toMultisetListing(const std::vector<uint32_t>& contents)
 {
     std::string s = "{";
     bool first = true;
@@ -63,7 +63,7 @@ static std::string toMultisetListing(const std::vector<int>& contents)
 // Implementation
 Set complement(const Set& A, size_t universalSize)
 {
-    Set result = {'C', std::vector<int>(universalSize, 0)};
+    Set result = {std::vector<uint32_t>(universalSize, 0)};
     for (size_t i = 0; i < universalSize; ++i) {
         int val = (i < A.contents.size()) ? A.contents[i] : 0;
         result.contents[i] = !val;
@@ -74,7 +74,7 @@ Set complement(const Set& A, size_t universalSize)
 Set setUnion(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result = {'U', std::vector<int>(size, 0)};
+    Set result = {std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.size()) ? A.contents[i] : 0;
         int valB = (i < B.size()) ? B.contents[i] : 0;
@@ -86,7 +86,7 @@ Set setUnion(const Set& A, const Set& B)
 Set setIntersection(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result = {'I', std::vector<int>(size, 0)};
+    Set result = {std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.contents.size()) ? A.contents[i] : 0;
         int valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -98,7 +98,7 @@ Set setIntersection(const Set& A, const Set& B)
 Set setDifference(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result{'D', std::vector<int>(size, 0)};
+    Set result{std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.contents.size()) ? A.contents[i] : 0;
         int valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -110,7 +110,7 @@ Set setDifference(const Set& A, const Set& B)
 Set symmetricDifference(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result{'S', std::vector<int>(size, 0)};
+    Set result{std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.contents.size()) ? A.contents[i] : 0;
         int valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -125,10 +125,10 @@ std::string runSetCheck(const Set& A, const Set& B, size_t universalSize)
     out << "========================================\n";
     out << "     Ordinary Set Operations (n = " << universalSize << ")\n";
     out << "========================================\n";
-    out << "Set " << A.setIdentifier << " Bit Array: " << toBitString(A.contents) << " -> "
-        << toElementListing(A.contents) << "\n";
-    out << "Set " << B.setIdentifier << " Bit Array: " << toBitString(B.contents) << " -> "
-        << toElementListing(B.contents) << "\n\n";
+    out << "Set A Bit Array: " << toBitString(A.contents) << " -> " << toElementListing(A.contents)
+        << "\n";
+    out << "Set B Bit Array: " << toBitString(B.contents) << " -> " << toElementListing(B.contents)
+        << "\n\n";
 
     Set notA = complement(A, universalSize);
     Set un = setUnion(A, B);
@@ -136,16 +136,16 @@ std::string runSetCheck(const Set& A, const Set& B, size_t universalSize)
     Set diff = setDifference(A, B);
     Set sym = symmetricDifference(A, B);
 
-    out << "NOT(" << A.setIdentifier << "):        " << toBitString(notA.contents) << " -> "
+    out << "NOT(A):        " << toBitString(notA.contents) << " -> "
         << toElementListing(notA.contents) << "\n";
-    out << A.setIdentifier << " U " << B.setIdentifier << ":         " << toBitString(un.contents)
-        << " -> " << toElementListing(un.contents) << "\n";
-    out << A.setIdentifier << " n " << B.setIdentifier << ":         "
-        << toBitString(inter.contents) << " -> " << toElementListing(inter.contents) << "\n";
-    out << A.setIdentifier << " - " << B.setIdentifier << ":         " << toBitString(diff.contents)
-        << " -> " << toElementListing(diff.contents) << "\n";
-    out << A.setIdentifier << " (+) " << B.setIdentifier << ":       " << toBitString(sym.contents)
-        << " -> " << toElementListing(sym.contents) << "\n";
+    out << "A U B:         " << toBitString(un.contents) << " -> " << toElementListing(un.contents)
+        << "\n";
+    out << "A n B:         " << toBitString(inter.contents) << " -> "
+        << toElementListing(inter.contents) << "\n";
+    out << "A - B:         " << toBitString(diff.contents) << " -> "
+        << toElementListing(diff.contents) << "\n";
+    out << "A (+) B:       " << toBitString(sym.contents) << " -> "
+        << toElementListing(sym.contents) << "\n";
 
     return out.str();
 }
@@ -153,7 +153,7 @@ std::string runSetCheck(const Set& A, const Set& B, size_t universalSize)
 Set multisetUnion(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result{'U', std::vector<int>(size, 0)};
+    Set result{std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.contents.size()) ? A.contents[i] : 0;
         int valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -165,7 +165,7 @@ Set multisetUnion(const Set& A, const Set& B)
 Set multisetIntersection(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result{'I', std::vector<int>(size, 0)};
+    Set result{std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.contents.size()) ? A.contents[i] : 0;
         int valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -177,7 +177,7 @@ Set multisetIntersection(const Set& A, const Set& B)
 Set multisetDifference(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result{'D', std::vector<int>(size, 0)};
+    Set result{std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.contents.size()) ? A.contents[i] : 0;
         int valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -189,7 +189,7 @@ Set multisetDifference(const Set& A, const Set& B)
 Set multisetSum(const Set& A, const Set& B)
 {
     size_t size = Set::maxSize(A, B);
-    Set result{'S', std::vector<int>(size, 0)};
+    Set result{std::vector<uint32_t>(size, 0)};
     for (size_t i = 0; i < size; ++i) {
         int valA = (i < A.contents.size()) ? A.contents[i] : 0;
         int valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -204,9 +204,9 @@ std::string runMultisetCheck(const Set& A, const Set& B)
     printOut << "========================================\n";
     printOut << "     Multiset (Bag) Operations\n";
     printOut << "========================================\n";
-    printOut << "Multiset " << A.setIdentifier << " Counts: " << toBitString(A.contents) << " -> "
+    printOut << "Multiset A Counts: " << toBitString(A.contents) << " -> "
              << toMultisetListing(A.contents) << "\n";
-    printOut << "Multiset " << B.setIdentifier << " Counts: " << toBitString(B.contents) << " -> "
+    printOut << "Multiset B Counts: " << toBitString(B.contents) << " -> "
              << toMultisetListing(B.contents) << "\n\n";
 
     Set mUn = multisetUnion(A, B);
@@ -215,20 +215,15 @@ std::string runMultisetCheck(const Set& A, const Set& B)
     Set mDiffBA = multisetDifference(B, A);
     Set mSum = multisetSum(A, B);
 
-    printOut << "Multiset Union (" << A.setIdentifier << " u_m " << B.setIdentifier
-             << "):        " << toBitString(mUn.contents) << " -> "
+    printOut << "Multiset Union (A u B):        " << toBitString(mUn.contents) << " -> "
              << toMultisetListing(mUn.contents) << "\n";
-    printOut << "Multiset Intersection (" << A.setIdentifier << " n_m " << B.setIdentifier
-             << "): " << toBitString(mInter.contents) << " -> "
+    printOut << "Multiset Intersection (A n B): " << toBitString(mInter.contents) << " -> "
              << toMultisetListing(mInter.contents) << "\n";
-    printOut << "Multiset Difference (" << A.setIdentifier << " -_m " << B.setIdentifier
-             << "):   " << toBitString(mDiffAB.contents) << " -> "
+    printOut << "Multiset Difference (A - B):   " << toBitString(mDiffAB.contents) << " -> "
              << toMultisetListing(mDiffAB.contents) << "\n";
-    printOut << "Multiset Difference (" << B.setIdentifier << " -_m " << A.setIdentifier
-             << "):   " << toBitString(mDiffBA.contents) << " -> "
+    printOut << "Multiset Difference (B - A):   " << toBitString(mDiffBA.contents) << " -> "
              << toMultisetListing(mDiffBA.contents) << "\n";
-    printOut << "Multiset Sum (" << A.setIdentifier << " +_m " << B.setIdentifier
-             << "):          " << toBitString(mSum.contents) << " -> "
+    printOut << "Multiset Sum (A (+) B):        " << toBitString(mSum.contents) << " -> "
              << toMultisetListing(mSum.contents) << "\n";
 
     return printOut.str();

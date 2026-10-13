@@ -10,16 +10,19 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <initializer_list>
 #include <vector>
 
 struct Set
 {
-    char setIdentifier{'A'};
-    std::vector<int> contents{};
+    std::vector<uint32_t> contents{};
 
-    size_t size() const { return contents.size(); }
+    Set(std::initializer_list<uint32_t> list) : contents(list) {}
+    Set(std::vector<uint32_t>&& vec) : contents(vec) {}
 
-    static size_t maxSize(const Set& A, const Set& B)
+    uint32_t size() const { return contents.size(); }
+
+    static uint32_t maxSize(const Set& A, const Set& B)
     {
         return std::max(A.contents.size(), B.contents.size());
     }
