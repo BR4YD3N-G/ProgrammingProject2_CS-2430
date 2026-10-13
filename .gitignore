@@ -41,7 +41,7 @@
 # Build directories
 build/
 Build/
-build-*/
+cmake-build-*/
 
 # CMake generated files
 CMakeFiles/
@@ -75,6 +75,7 @@ Testing/
 
 # Clion Files
 .clion/
+.idea/
 
 # OS Metadata files
 .DS_Store
