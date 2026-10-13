@@ -22,7 +22,7 @@ static std::string toBitString(const std::vector<uint32_t>& contents)
             s += ", ";
         }
     }
-    s += "]";
+    s += ']';
     return s;
 }
 
@@ -39,7 +39,7 @@ static std::string toElementListing(const std::vector<uint32_t>& contents)
             first = false;
         }
     }
-    s += "}";
+    s += '}';
     return first ? "∅" : s;
 }
 
@@ -56,16 +56,16 @@ static std::string toMultisetListing(const std::vector<uint32_t>& contents)
             first = false;
         }
     }
-    s += "}";
+    s += '}';
     return first ? "∅" : s;
 }
 
 // Implementation
 Set complement(const Set& A, size_t universalSize)
 {
-    Set result = {std::vector<uint32_t>(universalSize, 0)};
+    Set result = Set(std::vector<uint32_t>(universalSize, 0));
     for (size_t i = 0; i < universalSize; ++i) {
-        int val = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t val = (i < A.contents.size()) ? A.contents[i] : 0;
         result.contents[i] = !val;
     }
     return result;
@@ -73,11 +73,11 @@ Set complement(const Set& A, size_t universalSize)
 
 Set setUnion(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result = {std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result = Set(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.size()) ? A.contents[i] : 0;
-        int valB = (i < B.size()) ? B.contents[i] : 0;
+        const uint32_t valA = (i < A.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA || valB) ? 1 : 0;
     }
     return result;
@@ -85,11 +85,11 @@ Set setUnion(const Set& A, const Set& B)
 
 Set setIntersection(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result = {std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result = Set(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.contents.size()) ? A.contents[i] : 0;
-        int valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA && valB) ? 1 : 0;
     }
     return result;
@@ -97,11 +97,11 @@ Set setIntersection(const Set& A, const Set& B)
 
 Set setDifference(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result{std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result = Set(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.contents.size()) ? A.contents[i] : 0;
-        int valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA && !valB) ? 1 : 0;
     }
     return result;
@@ -109,11 +109,11 @@ Set setDifference(const Set& A, const Set& B)
 
 Set symmetricDifference(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result{std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result = Set(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.contents.size()) ? A.contents[i] : 0;
-        int valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA ^ valB) ? 1 : 0;
     }
     return result;
