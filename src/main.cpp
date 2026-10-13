@@ -49,5 +49,16 @@ int main()
 
     std::cout << "--- All Check Runs Complete ---\n";
 
+    // Fuzzy Sets
+
+    Set mA{3, 2, 0, 1, 0, 4, 0, 0, 0, 0};
+    Set mB{1, 4, 2, 3, 0, 0, 0, 0, 0, 0};
+
+    std::cout << "--- MULTISET TEST CASE ---\n";
+    std::cout << CheckSet::runMultisetCheck(mA, mB) << "\n";
+
+    std::cout << "--- All Check Runs Complete ---\n";
+
+
     return 0;
 }

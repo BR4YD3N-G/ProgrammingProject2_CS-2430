@@ -60,10 +60,27 @@ static std::string toMultisetListing(const std::vector<uint32_t>& contents)
     return first ? "∅" : s;
 }
 
+static std::string toFuzzysetListing(const std::vector<uint32_t>& contents)
+{
+    std::string s = "{";
+    bool first = true;
+    for (size_t i = 0; i < contents.size(); ++i) {
+        if (contents[i] > 0) {
+            if (!first) {
+                s += ", ";
+            }
+            s += std::to_string(static_cast<double>(contents[i]) / std::numeric_limits<uint32_t>::max()) + "·e" + std::to_string(i);
+            first = false;
+        }
+    }
+    s += '}';
+    return first ? "∅" : s;
+}
+
 // Implementation
 Set complement(const Set& A, size_t universalSize)
 {
-    Set result = Set(std::vector<uint32_t>(universalSize, 0));
+    Set result(std::vector<uint32_t>(universalSize, 0));
     for (size_t i = 0; i < universalSize; ++i) {
         const uint32_t val = (i < A.contents.size()) ? A.contents[i] : 0;
         result.contents[i] = !val;
@@ -74,7 +91,7 @@ Set complement(const Set& A, size_t universalSize)
 Set setUnion(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
-    Set result = Set(std::vector<uint32_t>(size, 0));
+    Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
         const uint32_t valA = (i < A.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.size()) ? B.contents[i] : 0;
@@ -86,7 +103,7 @@ Set setUnion(const Set& A, const Set& B)
 Set setIntersection(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
-    Set result = Set(std::vector<uint32_t>(size, 0));
+    Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -98,7 +115,7 @@ Set setIntersection(const Set& A, const Set& B)
 Set setDifference(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
-    Set result = Set(std::vector<uint32_t>(size, 0));
+    Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -110,7 +127,7 @@ Set setDifference(const Set& A, const Set& B)
 Set symmetricDifference(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
-    Set result = Set(std::vector<uint32_t>(size, 0));
+    Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
@@ -130,11 +147,11 @@ std::string runSetCheck(const Set& A, const Set& B, size_t universalSize)
     out << "Set B Bit Array: " << toBitString(B.contents) << " -> " << toElementListing(B.contents)
         << "\n\n";
 
-    Set notA = complement(A, universalSize);
-    Set un = setUnion(A, B);
-    Set inter = setIntersection(A, B);
-    Set diff = setDifference(A, B);
-    Set sym = symmetricDifference(A, B);
+    const Set notA = complement(A, universalSize);
+    const Set un = setUnion(A, B);
+    const Set inter = setIntersection(A, B);
+    const Set diff = setDifference(A, B);
+    const Set sym = symmetricDifference(A, B);
 
     out << "NOT(A):        " << toBitString(notA.contents) << " -> "
         << toElementListing(notA.contents) << "\n";
@@ -152,11 +169,11 @@ std::string runSetCheck(const Set& A, const Set& B, size_t universalSize)
 
 Set multisetUnion(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result{std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result = Set(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.contents.size()) ? A.contents[i] : 0;
-        int valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = std::max(valA, valB);
     }
     return result;
@@ -164,11 +181,11 @@ Set multisetUnion(const Set& A, const Set& B)
 
 Set multisetIntersection(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result{std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.contents.size()) ? A.contents[i] : 0;
-        int valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = std::min(valA, valB);
     }
     return result;
@@ -176,23 +193,23 @@ Set multisetIntersection(const Set& A, const Set& B)
 
 Set multisetDifference(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result{std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.contents.size()) ? A.contents[i] : 0;
-        int valB = (i < B.contents.size()) ? B.contents[i] : 0;
-        result.contents[i] = std::max(0, valA - valB);
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        result.contents[i] = std::max(0U, valA - valB);
     }
     return result;
 }
 
 Set multisetSum(const Set& A, const Set& B)
 {
-    size_t size = Set::maxSize(A, B);
-    Set result{std::vector<uint32_t>(size, 0)};
+    const size_t size = Set::maxSize(A, B);
+    Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
-        int valA = (i < A.contents.size()) ? A.contents[i] : 0;
-        int valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = valA + valB;
     }
     return result;
@@ -209,11 +226,11 @@ std::string runMultisetCheck(const Set& A, const Set& B)
     printOut << "Multiset B Counts: " << toBitString(B.contents) << " -> "
              << toMultisetListing(B.contents) << "\n\n";
 
-    Set mUn = multisetUnion(A, B);
-    Set mInter = multisetIntersection(A, B);
-    Set mDiffAB = multisetDifference(A, B);
-    Set mDiffBA = multisetDifference(B, A);
-    Set mSum = multisetSum(A, B);
+    const Set mUn = multisetUnion(A, B);
+    const Set mInter = multisetIntersection(A, B);
+    const Set mDiffAB = multisetDifference(A, B);
+    const Set mDiffBA = multisetDifference(B, A);
+    const Set mSum = multisetSum(A, B);
 
     printOut << "Multiset Union (A u B):        " << toBitString(mUn.contents) << " -> "
              << toMultisetListing(mUn.contents) << "\n";
@@ -228,4 +245,78 @@ std::string runMultisetCheck(const Set& A, const Set& B)
 
     return printOut.str();
 }
+
+
+Set multisetUnion(const Set& A, const Set& B)
+{
+    const size_t size = Set::maxSize(A, B);
+    Set result = Set(std::vector<uint32_t>(size, 0));
+    for (size_t i = 0; i < size; ++i) {
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        result.contents[i] = std::max(valA, valB);
+    }
+    return result;
+}
+
+Set multisetIntersection(const Set& A, const Set& B)
+{
+    const size_t size = Set::maxSize(A, B);
+    Set result(std::vector<uint32_t>(size, 0));
+    for (size_t i = 0; i < size; ++i) {
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        result.contents[i] = std::min(valA, valB);
+    }
+    return result;
+}
+
+Set multisetDifference(const Set& A, const Set& B)
+{
+    const size_t size = Set::maxSize(A, B);
+    Set result(std::vector<uint32_t>(size, 0));
+    for (size_t i = 0; i < size; ++i) {
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        result.contents[i] = std::max(0U, valA - valB);
+    }
+    return result;
+}
+
+Set multisetSum(const Set& A, const Set& B)
+{
+    const size_t size = Set::maxSize(A, B);
+    Set result(std::vector<uint32_t>(size, 0));
+    for (size_t i = 0; i < size; ++i) {
+        const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
+        const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
+        result.contents[i] = valA + valB;
+    }
+    return result;
+}
+
+std::string runFuzzysetCheck(const Set& A, const Set& B)
+{
+    std::ostringstream printOut;
+
+    const Set mUnFuzzy = multisetUnion(A, B);
+    const Set mInterFuzzy = multisetIntersection(A, B);
+    const Set mDiffABFuzzy = multisetDifference(A, B);
+    const Set mDiffBAFuzzy = multisetDifference(B, A);
+    const Set mSumFuzzy = multisetSum(A, B);
+
+    printOut << "Multiset Union (A u B):        " << toBitString(mUnFuzzy.contents) << " -> "
+             << toFuzzysetListing(mUnFuzzy.contents) << "\n";
+    printOut << "Multiset Intersection (A n B): " << toBitString(mInterFuzzy.contents) << " -> "
+             << toFuzzysetListing(mInterFuzzy.contents) << "\n";
+    printOut << "Multiset Difference (A - B):   " << toBitString(mDiffABFuzzy.contents) << " -> "
+             << toFuzzysetListing(mDiffABFuzzy.contents) << "\n";
+    printOut << "Multiset Difference (B - A):   " << toBitString(mDiffBAFuzzy.contents) << " -> "
+             << toFuzzysetListing(mDiffBAFuzzy.contents) << "\n";
+    printOut << "Multiset Sum (A (+) B):        " << toBitString(mSumFuzzy.contents) << " -> "
+             << toFuzzysetListing(mSumFuzzy.contents) << "\n";
+
+    return printOut.str();
+}
+
 } // namespace Project2::CheckSet
