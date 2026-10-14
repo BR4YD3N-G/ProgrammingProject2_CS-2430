@@ -7,6 +7,7 @@
  */
 
 #include "CheckSet.h"
+#include <limits>
 #include <sstream>
 #include <vector>
 
@@ -69,7 +70,9 @@ static std::string toFuzzysetListing(const std::vector<uint32_t>& contents)
             if (!first) {
                 s += ", ";
             }
-            s += std::to_string(static_cast<double>(contents[i]) / std::numeric_limits<uint32_t>::max()) + "·e" + std::to_string(i);
+            s += std::to_string(static_cast<double>(contents[i]) /
+                                std::numeric_limits<uint32_t>::max()) +
+                 "·e" + std::to_string(i);
             first = false;
         }
     }
@@ -198,7 +201,7 @@ Set multisetDifference(const Set& A, const Set& B)
     for (size_t i = 0; i < size; ++i) {
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
-        result.contents[i] = std::max(0U, valA - valB);
+        result.contents[i] = valA > valB ? valA - valB : 0;
     }
     return result;
 }
@@ -246,8 +249,17 @@ std::string runMultisetCheck(const Set& A, const Set& B)
     return printOut.str();
 }
 
+Set fuzzyComplement(const Set& A)
+{
+    const uint32_t maxMembership = std::numeric_limits<uint32_t>::max();
+    Set result(std::vector<uint32_t>(A.contents.size(), 0));
+    for (size_t i = 0; i < A.contents.size(); ++i) {
+        result.contents[i] = maxMembership - A.contents[i];
+    }
+    return result;
+}
 
-Set multisetUnion(const Set& A, const Set& B)
+Set fuzzyUnion(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
     Set result = Set(std::vector<uint32_t>(size, 0));
@@ -259,7 +271,7 @@ Set multisetUnion(const Set& A, const Set& B)
     return result;
 }
 
-Set multisetIntersection(const Set& A, const Set& B)
+Set fuzzyIntersection(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
@@ -271,49 +283,60 @@ Set multisetIntersection(const Set& A, const Set& B)
     return result;
 }
 
-Set multisetDifference(const Set& A, const Set& B)
+Set fuzzyDifference(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
+    const uint32_t maxMembership = std::numeric_limits<uint32_t>::max();
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
-        result.contents[i] = std::max(0U, valA - valB);
+        result.contents[i] = std::min(valA, maxMembership - valB);
     }
     return result;
 }
 
-Set multisetSum(const Set& A, const Set& B)
+Set fuzzySum(const Set& A, const Set& B)
 {
     const size_t size = Set::maxSize(A, B);
+    const uint32_t maxMembership = std::numeric_limits<uint32_t>::max();
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
-        result.contents[i] = valA + valB;
+        result.contents[i] = valA > maxMembership - valB ? maxMembership : valA + valB;
     }
     return result;
 }
 
-std::string runFuzzysetCheck(const Set& A, const Set& B)
+std::string runFuzzySetCheck(const Set& A, const Set& B)
 {
     std::ostringstream printOut;
 
-    const Set mUnFuzzy = multisetUnion(A, B);
-    const Set mInterFuzzy = multisetIntersection(A, B);
-    const Set mDiffABFuzzy = multisetDifference(A, B);
-    const Set mDiffBAFuzzy = multisetDifference(B, A);
-    const Set mSumFuzzy = multisetSum(A, B);
+    printOut << "========================================\n";
+    printOut << "           Fuzzy Operations\n";
+    printOut << "========================================\n";
+    printOut << "Fuzzy A: " << toFuzzysetListing(A.contents) << "\n";
+    printOut << "Fuzzy B: " << toFuzzysetListing(B.contents) << "\n\n";
 
-    printOut << "Multiset Union (A u B):        " << toBitString(mUnFuzzy.contents) << " -> "
+    const Set complementA = fuzzyComplement(A);
+    const Set mUnFuzzy = fuzzyUnion(A, B);
+    const Set mInterFuzzy = fuzzyIntersection(A, B);
+    const Set mDiffABFuzzy = fuzzyDifference(A, B);
+    const Set mDiffBAFuzzy = fuzzyDifference(B, A);
+    const Set mSumFuzzy = fuzzySum(A, B);
+
+    printOut << "Fuzzy Complement (NOT A):    " << toFuzzysetListing(complementA.contents)
+             << "\n";
+    printOut << "Fuzzy Union (A u B):        " << toBitString(mUnFuzzy.contents) << " -> "
              << toFuzzysetListing(mUnFuzzy.contents) << "\n";
-    printOut << "Multiset Intersection (A n B): " << toBitString(mInterFuzzy.contents) << " -> "
+    printOut << "Fuzzy Intersection (A n B): " << toBitString(mInterFuzzy.contents) << " -> "
              << toFuzzysetListing(mInterFuzzy.contents) << "\n";
-    printOut << "Multiset Difference (A - B):   " << toBitString(mDiffABFuzzy.contents) << " -> "
+    printOut << "Fuzzy Difference (A - B):   " << toBitString(mDiffABFuzzy.contents) << " -> "
              << toFuzzysetListing(mDiffABFuzzy.contents) << "\n";
-    printOut << "Multiset Difference (B - A):   " << toBitString(mDiffBAFuzzy.contents) << " -> "
+    printOut << "Fuzzy Difference (B - A):   " << toBitString(mDiffBAFuzzy.contents) << " -> "
              << toFuzzysetListing(mDiffBAFuzzy.contents) << "\n";
-    printOut << "Multiset Sum (A (+) B):        " << toBitString(mSumFuzzy.contents) << " -> "
+    printOut << "Fuzzy Sum (A (+) B):        " << toBitString(mSumFuzzy.contents) << " -> "
              << toFuzzysetListing(mSumFuzzy.contents) << "\n";
 
     return printOut.str();
