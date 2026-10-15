@@ -120,7 +120,3 @@ Audience is another student not in this class
 Clear figure/table captions if you include tables
 
 Professional tone
-
-# TODOs
-
-- Difference functions in Q1 of analysis.
