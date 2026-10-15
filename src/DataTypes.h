@@ -17,7 +17,7 @@ struct Set
     std::vector<uint32_t> contents{};
 
     Set(const std::initializer_list<uint32_t> list) : contents(list) {}
-    explicit Set(std::vector<uint32_t>&& vec) : contents(vec) {}
+    explicit Set(std::vector<uint32_t>&& vec) : contents(std::move(vec)) {}
 
     [[nodiscard]] uint32_t size() const { return contents.size(); }
 
