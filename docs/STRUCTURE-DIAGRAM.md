@@ -19,10 +19,5 @@ classDiagram
         + multisetIntersection(const Set&, const Set&) : Set $
         + multisetDifference(const Set&, const Set&) : Set $
         + multisetSum(const Set&, const Set&) : Set $
-        + fuzzyComplement(const Set&) : Set $
-        + fuzzyIntersection(const Set&, const Set&) : Set $
-        + fuzzyUnion(const Set&, const Set&) : Set $
-        + fuzzyDifference(const Set&, const Set&) : Set $
-        + fuzzySum(const Set&, const Set&) : Set $
     }
 ```
