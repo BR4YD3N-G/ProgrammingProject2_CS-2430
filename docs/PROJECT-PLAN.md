@@ -1,7 +1,23 @@
+# Code
+
+## Implementation
+
+- [x] (`31cb283435bb63487f9a5d97e38199408c0689c0`) Sets
+- [x] (`31cb283435bb63487f9a5d97e38199408c0689c0`) Multisets
+- [x] BRAYDEN: Fuzzy sets
+
+## Verification
+
+- [ ] THADDEUS: Test sets
+- [ ] THADDEUS: Test multisets
+- [ ] THADDEUS: Test fuzzy sets
+
+# Report
+
 - [x] THADDEUS: Title Block – team name; team members; course (CS 2430); semester; project title.
 - [ ] THADDEUS: Introduction (1–2 paragraphs) – explain the problem and why it is interesting/relevant.
 - [ ] BRAYDEN: Implementation / Methods – describe the data structures you used for ordinary sets and for multisets, and why.
-- [ ] TODD: Verification Approach – explain how you tested (include at least 2–3 representative cases + at least one edge case).
+- [ ] THADDEUS: Verification Approach – explain how you tested (include at least 2–3 representative cases + at least one edge case).
 - [x] BRAYDEN: Results – include the actual outputs from your program for:
   - all ordinary set operations, and
   - all multiset operations.
@@ -14,8 +30,9 @@
   - [ ] Discuss what implications your answers to questions 1–4 have for someone trying to code an interface which would allow users to type in natural-language queries.
   - [ ] Discuss what implications your answers to questions 1–5 have for someone trying to code an interface which would allow users to access arbitrary types of data using natural language.
 - [ ] THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
-- [ ] ALL: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
-- [ ] ALL: Sources – cite any external references you used.
+- [ ] BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
+- [ ] BOTH: Sources – cite any external references you used.
 
+# Questions
 
 - What do we do if we did use the same type to store all types of sets?
