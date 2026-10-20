@@ -6,8 +6,8 @@
  *    Primary author: Brayden Graham
  */
 
-#include "CheckSet.h"
 #include "DataTypes.h"
+#include "setOperations/SetsOperations.h"
 #include <iostream>
 #include <limits>
 
@@ -53,10 +53,26 @@ int main()
     // Fuzzy Sets
 
     constexpr uint32_t membershipMax = std::numeric_limits<uint32_t>::max();
-    Set fA{membershipMax / 4, membershipMax / 2, 3 * (membershipMax / 4),
-           membershipMax, 0, 0, 0, 0, 0, 0};
-    Set fB{membershipMax / 2, membershipMax / 4, membershipMax / 2,
-           3 * (membershipMax / 4), membershipMax, 0, 0, 0, 0, 0};
+    Set fA{membershipMax / 4,
+           membershipMax / 2,
+           3 * (membershipMax / 4),
+           membershipMax,
+           0,
+           0,
+           0,
+           0,
+           0,
+           0};
+    Set fB{membershipMax / 2,
+           membershipMax / 4,
+           membershipMax / 2,
+           3 * (membershipMax / 4),
+           membershipMax,
+           0,
+           0,
+           0,
+           0,
+           0};
 
     std::cout << "--- FUZZY TEST CASE ---\n";
     std::cout << CheckSet::runFuzzySetCheck(fA, fB) << "\n";

@@ -7,7 +7,8 @@
  */
 #pragma once
 
-#include "DataTypes.h"
+#include "../DataTypes.h"
+#include <cstddef>
 #include <string>
 
 namespace Project2::CheckSet {
@@ -29,11 +30,11 @@ Set multisetSum(const Set& A, const Set& B);
 Set fuzzyComplement(const Set& A);
 Set fuzzyUnion(const Set& A, const Set& B);
 Set fuzzyIntersection(const Set& A, const Set& B);
-Set fuzzyDifference(const Set& A, const Set& B);
 Set fuzzySum(const Set& A, const Set& B);
 
 // Display/Helpers
 std::string runSetCheck(const Set& A, const Set& B, size_t universalSize = 10);
 std::string runMultisetCheck(const Set& A, const Set& B);
 std::string runFuzzySetCheck(const Set& A, const Set& B);
+
 } // namespace Project2::CheckSet

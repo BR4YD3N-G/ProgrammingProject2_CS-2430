@@ -4,11 +4,10 @@
 add_executable(ProgrammingProject2
   # Cpp files
   main.cpp
-  checkSet.cpp
-
-  # Header files
-  CheckSet.h
-  DataTypes.h
+  setOperations/RepresentationHelper.cpp
+  setOperations/Sets.cpp
+  setOperations/MultiSets.cpp
+  setOperations/FuzzySets.cpp
 )
 
 # Compiler warning configuration for cross-platform compiling
