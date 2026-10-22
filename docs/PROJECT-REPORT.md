@@ -99,6 +99,14 @@ The fact that sets are represented using the same data structure regardless of t
 
 People accessing data using natural language queries do not need to be concerned with specifying the format in which the data exists, or should be processed. This simplifies query formation significantly and makes it accessible to people with little to no computer science or mathematical background. 
 
+## What Changed When Adding Fuzzy Sets
+
+The only thing that changed was the addition of functions handling the fuzzy set operations. Our data structure for sets, nor any of the other functions needed to change, nor was any refactoring necessary.
+
+## Impact of Original Design Decisions and Lessons Learned
+
+The original design decision to use the same data structure for sets and multisets set us up to expand things to fuzzy sets pretty easily. Something that we could have don differently to make things even easier is write functions that perform the complement, union, and intersection on any type of set. That would have made it so that no changes at all were needed to accomodate fuzzy sets.
+
 # Conclusion
 
 what you learned about mapping mathematical structures to code and why user queries complicate things.
