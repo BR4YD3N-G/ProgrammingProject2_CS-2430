@@ -26,13 +26,18 @@ THADDEUS:
   - all ordinary set operations, and
   - all multiset operations.
   - You may show these in labeled tables or clearly formatted lists.
-- [x] ALL: Discussion / Analysis – answer all questions from Section 8 in full paragraphs.
+- [ ] ALL: Discussion / Analysis – answer all questions from Section 8 in full paragraphs.
   - [x] If you used different arrays/structures/classes to represent the different types of sets, would it be possible to have overloaded methods or operations that would provide the correct functionality regardless of whether you were using sets or multisets? Why or why not? 
   - [x] Would it be possible to use the same data set/structure/class to store sets and multisets? Why or why not?
   - [x] How easy or difficult is it to determine the type of set that you need to use based on the user’s natural-language query? Why?
   - [x] Is it possible to store the data from one type of set (plain sets or multisets) in another type? Would you need to lose data in order to do so? Why?
   - [x] Discuss what implications your answers to questions 1–4 have for someone trying to code an interface which would allow users to type in natural-language queries.
   - [x] Discuss what implications your answers to questions 1–5 have for someone trying to code an interface which would allow users to access arbitrary types of data using natural language.
+  - [ ] What changed: Identify the classes, functions, modules, or data representations you added or modified, and explain why.
+  - [ ] What did not change: Identify components you reused without modification and explain what allowed that reuse.
+  - [ ] Refactoring: Describe any restructuring of existing code. Explain how it supported the new functionality and how you verified existing Set and Multiset behavior.
+  - [ ] Design strengths and weaknesses: Identify original assumptions or design choices that made the extension easier or more difficult.
+  - [ ] Lessons learned: Explain what you would design differently if starting again and connect that lesson to this change order.
 - [ ] THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
 - [ ] BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
 - [ ] BOTH: Sources – cite any external references you used.
