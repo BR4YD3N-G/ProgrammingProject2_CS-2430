@@ -33,11 +33,11 @@ THADDEUS:
   - [x] Is it possible to store the data from one type of set (plain sets or multisets) in another type? Would you need to lose data in order to do so? Why?
   - [x] Discuss what implications your answers to questions 1–4 have for someone trying to code an interface which would allow users to type in natural-language queries.
   - [x] Discuss what implications your answers to questions 1–5 have for someone trying to code an interface which would allow users to access arbitrary types of data using natural language.
-  - [ ] What changed: Identify the classes, functions, modules, or data representations you added or modified, and explain why.
-  - [ ] What did not change: Identify components you reused without modification and explain what allowed that reuse.
-  - [ ] Refactoring: Describe any restructuring of existing code. Explain how it supported the new functionality and how you verified existing Set and Multiset behavior.
-  - [ ] Design strengths and weaknesses: Identify original assumptions or design choices that made the extension easier or more difficult.
-  - [ ] Lessons learned: Explain what you would design differently if starting again and connect that lesson to this change order.
+  - [x] What changed: Identify the classes, functions, modules, or data representations you added or modified, and explain why.
+  - [x] What did not change: Identify components you reused without modification and explain what allowed that reuse.
+  - [x] Refactoring: Describe any restructuring of existing code. Explain how it supported the new functionality and how you verified existing Set and Multiset behavior.
+  - [x] Design strengths and weaknesses: Identify original assumptions or design choices that made the extension easier or more difficult.
+  - [x] Lessons learned: Explain what you would design differently if starting again and connect that lesson to this change order.
 - [ ] THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
 - [ ] BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
 - [ ] BOTH: Sources – cite any external references you used.
