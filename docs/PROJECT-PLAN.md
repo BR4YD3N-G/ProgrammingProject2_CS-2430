@@ -41,7 +41,3 @@ THADDEUS:
 - [ ] THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
 - [ ] BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
 - [ ] BOTH: Sources – cite any external references you used.
-
-# Questions
-
-- What do we do if we did use the same type to store all types of sets?
