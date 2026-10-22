@@ -107,20 +107,6 @@ what you learned about mapping mathematical structures to code and why user quer
 
 one short paragraph reflecting on problems, tools, and what you’d improve.
 
-# Sources
-
-cite any external references you used.
-
-Full sentences and paragraphs
-
-Grammatically correct and spell-checked
-
-Audience is another student not in this class
-
-Clear figure/table captions if you include tables
-
-Professional tone
-
 # TODOs
 
 - Difference functions in Q1 of analysis.
