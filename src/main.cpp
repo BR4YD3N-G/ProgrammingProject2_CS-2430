@@ -17,30 +17,30 @@ int main()
 {
     std::cout << "--- Sets & Multisets Engine ---\n";
 
-    // Ordinary Sets (Universal Set size n = 10)
+    // These ordinary-set examples use ten positions for the universe e0 through e9.
 
-    // --- Overlapping Sets ---
+    // This pair overlaps, so the output shows both shared and unshared elements.
     Set A1{1, 1, 1, 0, 1, 0, 1, 0, 0, 0};
     Set B1{0, 0, 1, 1, 1, 1, 0, 1, 0, 0};
 
     std::cout << "--- TEST CASE 1 (Overlapping Sets) ---\n";
     std::cout << CheckSet::runSetCheck(A1, B1, 10) << "\n";
 
-    // --- Disjoint Sets ---
+    // There are no shared elements in this pair, so its intersection is empty.
     Set A2{1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
     Set B2{0, 0, 0, 0, 0, 0, 0, 0, 1, 1};
 
     std::cout << "--- TEST CASE 2 (Disjoint Sets) ---\n";
     std::cout << CheckSet::runSetCheck(A2, B2, 10) << "\n";
 
-    // --- Relationship (A c B) ---
+    // Every element in A3 also appears in B3, making A3 a subset of B3.
     Set A3{0, 1, 0, 1, 0, 1, 0, 0, 0, 0};
     Set B3{0, 1, 1, 1, 1, 1, 0, 0, 0, 0};
 
     std::cout << "--- TEST CASE 3 (Subset Relationship) ---\n";
     std::cout << CheckSet::runSetCheck(A3, B3, 10) << "\n";
 
-    // Multisets / Bags
+    // These values are occurrence counts, not just present-or-absent flags.
 
     Set mA{3, 2, 0, 1, 0, 4, 0, 0, 0, 0};
     Set mB{1, 4, 2, 3, 0, 0, 0, 0, 0, 0};
@@ -50,7 +50,8 @@ int main()
 
     std::cout << "--- All Check Runs Complete ---\n";
 
-    // Fuzzy Sets
+    // Fuzzy values use the full uint32_t range: zero is out and max is fully in.
+    // The report converts these scaled values to decimals between zero and one.
 
     constexpr uint32_t membershipMax = std::numeric_limits<uint32_t>::max();
     Set fA{membershipMax / 4,

@@ -15,6 +15,7 @@ namespace Project2::CheckSet {
 
 Set fuzzyComplement(const Set& A)
 {
+    // Since max represents membership 1, subtracting a value gives its complement.
     const uint32_t maxMembership = std::numeric_limits<uint32_t>::max();
     Set result(std::vector<uint32_t>(A.contents.size(), 0));
     for (size_t i = 0; i < A.contents.size(); ++i) {
@@ -28,6 +29,7 @@ Set fuzzyUnion(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result = Set(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // Max membership gives the fuzzy union of the two elements.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = std::max(valA, valB);
@@ -40,6 +42,7 @@ Set fuzzyIntersection(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // Min membership gives the fuzzy intersection of the two elements.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = std::min(valA, valB);
@@ -53,6 +56,7 @@ Set fuzzySum(const Set& A, const Set& B)
     const uint32_t maxMembership = std::numeric_limits<uint32_t>::max();
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // Add memberships, but cap the result at 1 and avoid uint32_t overflow.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = valA > maxMembership - valB ? maxMembership : valA + valB;
@@ -62,6 +66,7 @@ Set fuzzySum(const Set& A, const Set& B)
 
 std::string runFuzzySetCheck(const Set& A, const Set& B)
 {
+    // The formatter converts the stored integers back to readable 0-to-1 values.
     std::ostringstream printOut;
 
     printOut << "========================================\n";

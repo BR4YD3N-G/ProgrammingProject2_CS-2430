@@ -14,6 +14,7 @@ namespace Project2::CheckSet::helper {
 std::string toBitString(const std::vector<uint32_t>& contents)
 {
     std::string s = "[";
+    // Include zero entries too so the output shows every stored position.
     for (size_t i = 0; i < contents.size(); ++i) {
         s += std::to_string(contents[i]);
         if (i + 1 < contents.size()) {
@@ -28,6 +29,7 @@ std::string toElementListing(const std::vector<uint32_t>& contents)
 {
     std::string s = "{";
     bool first = true;
+    // For an ordinary set, any nonzero value means that element is included.
     for (size_t i = 0; i < contents.size(); ++i) {
         if (contents[i] != 0) {
             if (!first) {
@@ -45,6 +47,7 @@ std::string toMultisetListing(const std::vector<uint32_t>& contents)
 {
     std::string s = "{";
     bool first = true;
+    // Write each element with its count, leaving elements with count zero out.
     for (size_t i = 0; i < contents.size(); ++i) {
         if (contents[i] > 0) {
             if (!first) {
@@ -62,6 +65,7 @@ std::string toFuzzysetListing(const std::vector<uint32_t>& contents)
 {
     std::string s = "{";
     bool first = true;
+    // Convert fixed-point membership values to decimals between 0 and 1.
     for (size_t i = 0; i < contents.size(); ++i) {
         if (contents[i] > 0) {
             if (!first) {

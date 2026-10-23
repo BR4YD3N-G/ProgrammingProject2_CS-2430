@@ -2,7 +2,7 @@
 
 # Define executable and attach source files
 add_executable(ProgrammingProject2
-  # Cpp files
+  # The entry point and the files for displaying and performing each operation type.
   main.cpp
   setOperations/RepresentationHelper.cpp
   setOperations/Sets.cpp

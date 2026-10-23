@@ -17,6 +17,7 @@ Set multisetUnion(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result = Set(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // A multiset union keeps the larger count for each element.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = std::max(valA, valB);
@@ -29,6 +30,7 @@ Set multisetIntersection(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // The shared count cannot exceed the smaller count in either input.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = std::min(valA, valB);
@@ -41,6 +43,7 @@ Set multisetDifference(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // Check the counts before subtracting so unsigned values cannot wrap.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = valA > valB ? valA - valB : 0;
@@ -53,6 +56,7 @@ Set multisetSum(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // A multiset sum adds every copy from A and B.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = valA + valB;
@@ -62,6 +66,7 @@ Set multisetSum(const Set& A, const Set& B)
 
 std::string runMultisetCheck(const Set& A, const Set& B)
 {
+    // Show the input counts first, followed by the result of each bag operation.
     std::ostringstream printOut;
     printOut << "========================================\n";
     printOut << "     Multiset (Bag) Operations\n";
