@@ -28,9 +28,7 @@ We chose this representation because it allows us to keep the same data structur
 
 # Verification Approach
 
-explain how you tested (include at least 2–3 representative cases + at least one edge case).
-
-- Verify the set functions behave as expected when multiset or fuzzy set data is passed in, and vice versa.
+Our verification process includes simple tests to ensure that each function works as expected. We set up a skeleton framework for testing that should be expanded to cover corner cases. Our current tests only cover the typical cases for all of our functions.
 
 # Results
 
@@ -61,6 +59,18 @@ Let $B$ be $[1, 4, 2, 3, 0, 0, 0, 0, 0, 0]$
 | $A-B$          | $[2, 0, 0, 0, 0, 4, 0, 0, 0, 0]$ |
 | $A\triangle B$ | $[0, 2, 2, 2, 0, 0, 0, 0, 0, 0]$ |
 | $A + B$        | $[4, 6, 2, 4, 0, 4, 0, 0, 0, 0]$ |
+
+## Fuzzy Sets
+
+Let $A$ be $[0.25, 0.5, 0.75, 1.0]$
+
+Let $B$ be $[0.5, 0.25, 0.5, 0.75, 1.0]$
+
+| Operation       | Result                                                 |
+|-----------------|--------------------------------------------------------|
+| $A^\complement$ | $[0.75, 0.5, 0.25, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]$ |
+| $A\cup B$       | $[0.5, 0.5, 0.75, 1.0, 1.0]$                           |
+| $A\cap B$       | $[0.25, 0.25, 0.5, 0.75]$                              |
 
 # Discussion / Analysis
 
