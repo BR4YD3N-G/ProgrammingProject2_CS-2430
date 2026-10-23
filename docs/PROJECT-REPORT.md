@@ -4,11 +4,13 @@ CS 2430, Semester 1, Project 2
 
 # Introduction (1–2 paragraphs)
 
-This problem is interesting because of its practical applications. Sets are applicable everywhere from music playlists on your computer, to industrial databases, search engines, and more.
+This problem is interesting because set operations show up in everyday software, even when users don’t notice them. A music app might combine playlists or find songs two playlists have in common. Search engines use similar ideas to combine results or filter out matches. Working through small examples helps show how these operations can be used in larger programs.
 
 # Implementation / Methods
 
-For sets, multisets, and fuzzy sets, we used an array of 32-bit unsigned integers to represent the elements.
+For sets, multisets, and fuzzy sets, we used an array of 32-bit unsigned integers to represent the elements. (contents[0] represents e0, contents[1] represents e1, and so on...)
+
+Multisets use the same structure, but each entry stores the number of copies of that element instead of a Boolean membership flag. For example, a 3 at index 0 means there are three copies of e0.
 
 ## Sets
 
@@ -33,12 +35,13 @@ explain how you tested (include at least 2–3 representative cases + at least o
 # Results
 
 ## Ordinary Sets
+
 Let $A$ be $[1, 1, 1, 0, 1, 0, 1, 0, 0, 0]$
 
 Let $B$ be $[0, 0, 1, 1, 1, 1, 0, 1, 0, 0]$
 
 | Operation       | Result                           |
-|-----------------|----------------------------------|
+| --------------- | -------------------------------- |
 | $A^\complement$ | $[0, 0, 0, 1, 0, 1, 0, 1, 1, 1]$ |
 | $A\cup B$       | $[1, 1, 1, 1, 1, 1, 1, 1, 0, 0]$ |
 | $A\cap B$       | $[0, 0, 1, 0, 1, 0, 0, 0, 0, 0]$ |
@@ -52,7 +55,7 @@ Let $A$ be $[3, 2, 0, 1, 0, 4, 0, 0, 0, 0]$
 Let $B$ be $[1, 4, 2, 3, 0, 0, 0, 0, 0, 0]$
 
 | Operation      | Result                           |
-|----------------|----------------------------------|
+| -------------- | -------------------------------- |
 | $A\cup B$      | $[3, 4, 2, 3, 0, 4, 0, 0, 0, 0]$ |
 | $A\cap B$      | $[1, 2, 0, 1, 0, 0, 0, 0, 0, 0]$ |
 | $A-B$          | $[2, 0, 0, 0, 0, 4, 0, 0, 0, 0]$ |
@@ -97,7 +100,7 @@ The fact that sets are represented using the same data structure regardless of t
 
 ## Accessing Data Using Natural Language Queries
 
-People accessing data using natural language queries do not need to be concerned with specifying the format in which the data exists, or should be processed. This simplifies query formation significantly and makes it accessible to people with little to no computer science or mathematical background. 
+People accessing data using natural language queries do not need to be concerned with specifying the format in which the data exists, or should be processed. This simplifies query formation significantly and makes it accessible to people with little to no computer science or mathematical background.
 
 ## What Changed When Adding Fuzzy Sets
 
@@ -112,6 +115,8 @@ The original design decision to use the same data structure for sets and multise
 what you learned about mapping mathematical structures to code and why user queries complicate things.
 
 # Summary of Work Done / Lessons Learned
+
+I found this really in project topic really intresting and can clearly see its practacal implimentations, writing the implimentation helped me improve my understanding of the concepts. This project also allowed me to play around with and learn about clang-format to enforce project formating, I see this as a very useful tool for collaberative project. One thing I would improve if I rewrote the project is I would try to write the methods in a way that allowed me to reuse more code, one way that crossed my mind to do this is with C++ templates. - Brayden Graham
 
 one short paragraph reflecting on problems, tools, and what you’d improve.
 
