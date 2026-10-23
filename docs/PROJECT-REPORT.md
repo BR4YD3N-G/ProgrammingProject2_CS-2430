@@ -4,8 +4,6 @@ CS 2430, Semester 1, Project 2
 
 # Introduction (1–2 paragraphs)
 
-explain the problem and why it is interesting/relevant.
-
 This problem is interesting because of its practical applications. Sets are applicable everywhere from music playlists on your computer, to industrial databases, search engines, and more.
 
 # Implementation / Methods
@@ -63,8 +61,17 @@ Let $B$ be $[1, 4, 2, 3, 0, 0, 0, 0, 0, 0]$
 
 # Discussion / Analysis
 
-1. If you used different arrays/structures/classes to represent the different types of sets, would it be possible to have overloaded methods or operations that would provide the correct functionality regardless of whether you were using sets or multisets? Why or why not?
-2. Would it be possible to use the same data set/structure/class to store sets and multisets? Why or why not?
+## Using the Same Functions on Multiple Set Types
+
+Three functions matter here: the `union`, `intersection`, and `difference`. These functions are common among sets, multisets, and fuzzy sets.
+
+In the case of `union`, the expression `max(a, b)` for every element in the two sets represents the union regardless of the type of set.
+
+In the case of `intersection`, the expression `min(a, b)` for every element in the two sets represents the intersection regardless of the type of set.
+
+With relation to sets and multisets only, `difference` is the expression `a > b ? a - b : 0` for every element in the two sets.
+
+## Using the Same Data Structure For Multiple Set Types
 
 Not only is it possible, but we chose to do this for our sets, multisets, and fuzzy sets using a vector of unsigned 32-bit integers. This works because the functions which operate on the set interpret the data inside in different ways.
 
@@ -72,7 +79,7 @@ Not only is it possible, but we chose to do this for our sets, multisets, and fu
 - Multisets treat each element as a count. The count is the number of times the element is present in the set.
 - Fuzzy sets treat each element as a level of inclusivity. The level of inclusivity is $0$ when the element is $0$, and $1$ when the element is $2^{32}-1$.
 
-3. How easy or difficult is it to determine the type of set that you need to use based on the user’s natural-language query? Why?
+## Deriving Set Types from Natural Language Queries
 
 It is both difficult and easy. If you can extract the notion that the user wants a group of things, then a set is appropriate. If you can extract the notion that the user desires a quantity or group of quantities, then multisets are appropriate. If you can extract the notion that the user desires a percentage or ratio, or group thereof, then a fuzzy set would be appropriate. The difficult part of the problem is extracting that notion.
 
@@ -80,12 +87,25 @@ This is very difficult to do. You may choose to examine the query for words like
 
 An approach that overcomes this difficulty might be to use a tiny LLM whose job is to determine the form of the question and the user's desired output. The huge downside to this is the extreme cost of even lightweight LLMs.
 
-4. Is it possible to store the data from one type of set (plain sets or multisets) in another type? Would you need to lose data in order to do so? Why?
+## Set Type Mixing and Conversion
 
 It is possible to store the data from one type of set in another. For example, a multiset can store the data from a set. We just decide that the set is now a multiset, and that is all the conversion that needs to be done. The reverse is the same. There is a loss of data when calling the set functions with multiset. The elements of the multiset will be treated as booleans rather than counts. The same concept applies when considering fuzzy sets. To convert a fuzzy set to a count, one may want to provide some sort of conversion function. To convert it to a plain set, one may wish to specify a threshold which values must match or exceed to be considered present in the set.
 
-5. Discuss what implications your answers to questions 1–4 have for someone trying to code an interface which would allow users to type in natural-language queries.
-6. Discuss what implications your answers to questions 1–5 have for someone trying to code an interface which would allow users to access arbitrary types of data using natural language.
+## Deriving Set Types from Natural Language Queries
+
+The fact that sets are represented using the same data structure regardless of the data types requested, and we can process the different set types using the same functions, means that choosing a set type is inconsequential, and therefore, not a significant problem when addressing a natural language prompt.
+
+## Accessing Data Using Natural Language Queries
+
+People accessing data using natural language queries do not need to be concerned with specifying the format in which the data exists, or should be processed. This simplifies query formation significantly and makes it accessible to people with little to no computer science or mathematical background. 
+
+## What Changed When Adding Fuzzy Sets
+
+The only thing that changed was the addition of functions handling the fuzzy set operations. Our data structure for sets, nor any of the other functions needed to change, nor was any refactoring necessary.
+
+## Impact of Original Design Decisions and Lessons Learned
+
+The original design decision to use the same data structure for sets and multisets set us up to expand things to fuzzy sets pretty easily. Something that we could have don differently to make things even easier is write functions that perform the complement, union, and intersection on any type of set. That would have made it so that no changes at all were needed to accomodate fuzzy sets.
 
 # Conclusion
 
@@ -95,16 +115,6 @@ what you learned about mapping mathematical structures to code and why user quer
 
 one short paragraph reflecting on problems, tools, and what you’d improve.
 
-# Sources
+# TODOs
 
-cite any external references you used.
-
-Full sentences and paragraphs
-
-Grammatically correct and spell-checked
-
-Audience is another student not in this class
-
-Clear figure/table captions if you include tables
-
-Professional tone
+- Difference functions in Q1 of analysis.
