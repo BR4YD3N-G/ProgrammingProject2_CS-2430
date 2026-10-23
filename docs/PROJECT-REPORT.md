@@ -108,18 +108,18 @@ The only thing that changed was the addition of functions handling the fuzzy set
 
 ## Impact of Original Design Decisions and Lessons Learned
 
-The original design decision to use the same data structure for sets and multisets set us up to expand things to fuzzy sets pretty easily. Something that we could have don differently to make things even easier is write functions that perform the complement, union, and intersection on any type of set. That would have made it so that no changes at all were needed to accomodate fuzzy sets.
+The original design decision to use the same data structure for sets and multisets set us up to expand things to fuzzy sets pretty easily. Something that we could have done differently to make things even easier is write functions that perform the complement, union, and intersection on any type of set. That would have made it so that no changes at all were needed to accommodate fuzzy sets.
 
 # Conclusion
 
-what you learned about mapping mathematical structures to code and why user queries complicate things.
+A single function can represent a mathematical mapping. For example, the complement function represents the mathematical mapping $\{\{0, 1\}, \{1, 0\}\}$. User queries make things complicated because understanding exactly what the user wants when he or she asks for something specific. This is an extremely involved natural language processing task.
 
 # Summary of Work Done / Lessons Learned
 
-I found this really in project topic really intresting and can clearly see its practacal implimentations, writing the implimentation helped me improve my understanding of the concepts. This project also allowed me to play around with and learn about clang-format to enforce project formating, I see this as a very useful tool for collaberative project. One thing I would improve if I rewrote the project is I would try to write the methods in a way that allowed me to reuse more code, one way that crossed my mind to do this is with C++ templates. - Brayden Graham
+## Brayden Graham
 
-one short paragraph reflecting on problems, tools, and what you’d improve.
+I found this project topic really interesting and can clearly see its practical implementations. Writing the implementation helped me improve my understanding of the concepts. This project also allowed me to play around with and learn about clang-format to enforce project formating, I see this as a very useful tool for collaborative projects. One thing I would improve if I rewrote the project is I would try to write the methods in a way that allowed me to reuse more code. One way that crossed my mind to do this is with C++ templates.
 
-# TODOs
+## Thaddeus Schelp
 
-- Difference functions in Q1 of analysis.
+While working on this project, I learned a lot about maintaining a git repository when working with other people. Using branches and pull requests made it easy to separate work, then run it by the other person before getting in pulled in to main. If I were to do one thing differently, it would probably be to use GitHub's issues features as well. I want to understand what use case they have in projects of this size. I remember Todd using them to pretty good effect in the last project.

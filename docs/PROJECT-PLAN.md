@@ -26,7 +26,7 @@ THADDEUS:
   - all ordinary set operations, and
   - all multiset operations.
   - You may show these in labeled tables or clearly formatted lists.
-- [ ] ALL: Discussion / Analysis – answer all questions from Section 8 in full paragraphs.
+- [x] ALL: Discussion / Analysis – answer all questions from Section 8 in full paragraphs.
   - [x] If you used different arrays/structures/classes to represent the different types of sets, would it be possible to have overloaded methods or operations that would provide the correct functionality regardless of whether you were using sets or multisets? Why or why not?
   - [x] Would it be possible to use the same data set/structure/class to store sets and multisets? Why or why not?
   - [x] How easy or difficult is it to determine the type of set that you need to use based on the user’s natural-language query? Why?
@@ -38,6 +38,6 @@ THADDEUS:
   - [x] Refactoring: Describe any restructuring of existing code. Explain how it supported the new functionality and how you verified existing Set and Multiset behavior.
   - [x] Design strengths and weaknesses: Identify original assumptions or design choices that made the extension easier or more difficult.
   - [x] Lessons learned: Explain what you would design differently if starting again and connect that lesson to this change order.
-- [ ] THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
-- [\] BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
-- [\] BOTH: Sources – cite any external references you used.
+- [x] THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
+- [x] BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
+- [x] BOTH: Sources – cite any external references you used.
