@@ -12,11 +12,12 @@
 
 namespace Project2::CheckSet {
 
-// Implementation
 Set complement(const Set& A, size_t universalSize)
 {
+    // A complement needs the whole universe, even if A has fewer stored positions.
     Set result(std::vector<uint32_t>(universalSize, 0));
     for (size_t i = 0; i < universalSize; ++i) {
+        // Treat positions missing from A as absent before flipping membership.
         const uint32_t val = (i < A.contents.size()) ? A.contents[i] : 0;
         result.contents[i] = !val;
     }
@@ -28,6 +29,7 @@ Set setUnion(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // Missing positions count as absent, and any present value becomes 1.
         const uint32_t valA = (i < A.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA || valB) ? 1 : 0;
@@ -40,6 +42,7 @@ Set setIntersection(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // An element belongs to the intersection only when it is in both sets.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA && valB) ? 1 : 0;
@@ -52,6 +55,7 @@ Set setDifference(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // Keep elements that are in A but not in B.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA && !valB) ? 1 : 0;
@@ -64,6 +68,7 @@ Set symmetricDifference(const Set& A, const Set& B)
     const size_t size = Set::maxSize(A, B);
     Set result(std::vector<uint32_t>(size, 0));
     for (size_t i = 0; i < size; ++i) {
+        // XOR is true when exactly one of the sets contains this element.
         const uint32_t valA = (i < A.contents.size()) ? A.contents[i] : 0;
         const uint32_t valB = (i < B.contents.size()) ? B.contents[i] : 0;
         result.contents[i] = (valA ^ valB) ? 1 : 0;
@@ -73,6 +78,7 @@ Set symmetricDifference(const Set& A, const Set& B)
 
 std::string runSetCheck(const Set& A, const Set& B, size_t universalSize)
 {
+    // Keep the operation results together in one report for the main program.
     std::ostringstream out;
     out << "========================================\n";
     out << "     Ordinary Set Operations (n = " << universalSize << ")\n";

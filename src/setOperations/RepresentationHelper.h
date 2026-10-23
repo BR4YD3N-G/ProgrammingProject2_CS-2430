@@ -6,6 +6,7 @@
 
 namespace Project2::CheckSet::helper {
 
+// These formatters are shared by the ordinary, multiset, and fuzzy reports.
 std::string toBitString(const std::vector<uint32_t>& contents);
 std::string toElementListing(const std::vector<uint32_t>& contents);
 std::string toMultisetListing(const std::vector<uint32_t>& contents);
