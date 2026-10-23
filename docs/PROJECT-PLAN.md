@@ -14,15 +14,15 @@ THADDEUS:
 
 - [x] [#3](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/3) Test sets
 - [x] [#3](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/3) Test multisets
-- [ ] THADDEUS: Test fuzzy sets
+- [x] THADDEUS: Test fuzzy sets
 
 # Report
 
 - [x] [5ad7150599acc429b3163140d1b82559c8197230](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/1/changes/5ad7150599acc429b3163140d1b82559c8197230) THADDEUS: Title Block – team name; team members; course (CS 2430); semester; project title.
 - [x] BRAYDEN: Introduction (1–2 paragraphs) – explain the problem and why it is interesting/relevant.
 - [x] BRAYDEN: Implementation / Methods – describe the data structures you used for ordinary sets and for multisets, and why.
-- [ ] THADDEUS: Verification Approach – explain how you tested (include at least 2–3 representative cases + at least one edge case).
-- [ ] THADDEUS: Results – include the actual outputs from your program for:
+- [x] THADDEUS: Verification Approach – explain how you tested (include at least 2–3 representative cases + at least one edge case).
+- [x] THADDEUS: Results – include the actual outputs from your program for:
   - all ordinary set operations, and
   - all multiset operations.
   - You may show these in labeled tables or clearly formatted lists.
