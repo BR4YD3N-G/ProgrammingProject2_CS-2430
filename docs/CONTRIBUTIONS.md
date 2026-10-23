@@ -16,11 +16,6 @@
 ## Evidence Link Conventions (choose one and be consistent)
 
 - Commits: `https://github.com/<org>/<repo>/commit/<hash>`
-- PRs: `https://github.com/<org>/<repo>/pull/<num>`
-- Issues: `https://github.com/<org>/<repo>/issues/<num>`
-- Files: `/<path/from/repo/root>`
-- Meeting notes: `/docs/meetings/YYYY-MM-DD.md` (or similar)
-- Screenshots/logs: `/docs/evidence/<name>.png` / `/docs/evidence/<name>.txt`
 
 ---
 
@@ -28,8 +23,6 @@
 
 - **Member A:** <high-level summary>
 - **Member B:** <high-level summary>
-- **Member C:** <high-level summary>
-- **Member D:** <high-level summary or “No verified contributions yet”>
 
 ---
 
@@ -71,35 +64,7 @@
 **Collaboration / support**
 
 - <...> — Evidence: <...>
-
----
-
-### <Full Name> (<GitHub username>)
-
-**Primary responsibilities**
-
-- [ ] <...>
-
-**Completed work**
-
-- <...> — Evidence: <...>
-
-**Collaboration / support**
-
-- <...> — Evidence: <...>
-
----
-
-### <Full Name> (<GitHub username>)
-
-**Status**
-
-- No verified contributions yet (as of <date>).
-
-**Communication attempts (if applicable; keep professional)**
-
-- <YYYY-MM-DD> — message sent in <channel> — Evidence: <meeting notes link or screenshot path>
-- <YYYY-MM-DD> — meeting invite — Evidence: <notes link>
+-
 
 ---
 
@@ -117,4 +82,3 @@ Each team member should add initials next to their name once reviewed.
 
 - Member A: ____ Date: ____
 - Member B: ____ Date: ____
-- Member C: ____ Date: ____
