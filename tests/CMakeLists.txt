@@ -21,6 +21,11 @@ set(TESTS
         multisetIntersection
         multisetDifference
         multisetSum
+
+        # Fuzzy set tests
+        fuzzySetComplement
+        fuzzySetUnion
+        fuzzySetIntersection
 )
 
 foreach (TEST ${TESTS})
