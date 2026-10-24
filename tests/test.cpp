@@ -1,4 +1,4 @@
-#include "../src/CheckSet.h"
+#include "../src/setOperations/SetsOperations.h"
 
 #include <cstdint>
 #include <iostream>
@@ -23,7 +23,8 @@ static constexpr int assertEquals(const Set& set, const Set& expected)
             return i;
         }
         if (set.contents[i] != expected.contents[i]) {
-            std::cerr << "Sets differ at index " << i << ": (" << set.contents[i] << " != " << expected.contents[i] << ")" << std::endl;
+            std::cerr << "Sets differ at index " << i << ": (" << set.contents[i]
+                      << " != " << expected.contents[i] << ")" << std::endl;
             return i;
         }
     }
@@ -149,23 +150,31 @@ int main(const int argc, char** argv)
         std::cerr << "Exactly one test must be specified.";
         return -1;
     }
-    switch (fnv1a(argv[1]))
-    {
-        // set tests
-        case fnv1a("--setComplement"): return testSetComplement();
-        case fnv1a("--setUnion"): return testSetUnion();
-        case fnv1a("--setIntersection"): return testSetIntersection();
-        case fnv1a("--setDifference"): return testSetDifference();
-        case fnv1a("--setSymmetricDifference"): return testSetSymmetricDifference();
+    switch (fnv1a(argv[1])) {
+    // set tests
+    case fnv1a("--setComplement"):
+        return testSetComplement();
+    case fnv1a("--setUnion"):
+        return testSetUnion();
+    case fnv1a("--setIntersection"):
+        return testSetIntersection();
+    case fnv1a("--setDifference"):
+        return testSetDifference();
+    case fnv1a("--setSymmetricDifference"):
+        return testSetSymmetricDifference();
 
-        // multiset tests
-        case fnv1a("--multisetUnion"): return testMultisetUnion();
-        case fnv1a("--multisetIntersection"): return testMultisetIntersection();
-        case fnv1a("--multisetDifference"): return testMultisetDifference();
-        case fnv1a("--multisetSum"): return testMultisetSum();
+    // multiset tests
+    case fnv1a("--multisetUnion"):
+        return testMultisetUnion();
+    case fnv1a("--multisetIntersection"):
+        return testMultisetIntersection();
+    case fnv1a("--multisetDifference"):
+        return testMultisetDifference();
+    case fnv1a("--multisetSum"):
+        return testMultisetSum();
 
-        default:
-            std::cerr << "Unknown test: " << argv[1];
-            return -1;
+    default:
+        std::cerr << "Unknown test: " << argv[1];
+        return -1;
     }
 }
