@@ -14,19 +14,19 @@ THADDEUS:
 
 - [x] [#3](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/3) Test sets
 - [x] [#3](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/3) Test multisets
-- [x] THADDEUS: Test fuzzy sets
+- [x] [#9](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/9) Test fuzzy sets
 
 # Report
 
 - [x] [5ad7150599acc429b3163140d1b82559c8197230](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/1/changes/5ad7150599acc429b3163140d1b82559c8197230) THADDEUS: Title Block – team name; team members; course (CS 2430); semester; project title.
-- [x] BRAYDEN: Introduction (1–2 paragraphs) – explain the problem and why it is interesting/relevant.
-- [x] BRAYDEN: Implementation / Methods – describe the data structures you used for ordinary sets and for multisets, and why.
-- [x] THADDEUS: Verification Approach – explain how you tested (include at least 2–3 representative cases + at least one edge case).
-- [x] THADDEUS: Results – include the actual outputs from your program for:
+- [x] [be67d59cf7b925fca9335b44af1919b2d4802892](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/7/changes/be67d59cf7b925fca9335b44af1919b2d4802892) BRAYDEN: Introduction (1–2 paragraphs) – explain the problem and why it is interesting/relevant.
+- [x] [#1](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/1) BRAYDEN: Implementation / Methods – describe the data structures you used for ordinary sets and for multisets, and why.
+- [x] [#3](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/3) THADDEUS: Verification Approach – explain how you tested (include at least 2–3 representative cases + at least one edge case).
+- [x] [5aeda87e4a806de7dd8f6030f1c7581c852323fb](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/4/changes/5aeda87e4a806de7dd8f6030f1c7581c852323fb) THADDEUS: Results – include the actual outputs from your program for:
   - all ordinary set operations, and
   - all multiset operations.
   - You may show these in labeled tables or clearly formatted lists.
-- [x] ALL: Discussion / Analysis – answer all questions from Section 8 in full paragraphs.
+- [x] [5aeda87e4a806de7dd8f6030f1c7581c852323fb](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/4/changes/5aeda87e4a806de7dd8f6030f1c7581c852323fb) ALL: Discussion / Analysis – answer all questions from Section 8 in full paragraphs.
   - [x] If you used different arrays/structures/classes to represent the different types of sets, would it be possible to have overloaded methods or operations that would provide the correct functionality regardless of whether you were using sets or multisets? Why or why not?
   - [x] Would it be possible to use the same data set/structure/class to store sets and multisets? Why or why not?
   - [x] How easy or difficult is it to determine the type of set that you need to use based on the user’s natural-language query? Why?
@@ -38,6 +38,6 @@ THADDEUS:
   - [x] Refactoring: Describe any restructuring of existing code. Explain how it supported the new functionality and how you verified existing Set and Multiset behavior.
   - [x] Design strengths and weaknesses: Identify original assumptions or design choices that made the extension easier or more difficult.
   - [x] Lessons learned: Explain what you would design differently if starting again and connect that lesson to this change order.
-- [x] THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
-- [x] BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
+- [x] [#8](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/8) THADDEUS Conclusion – what you learned about mapping mathematical structures to code and why user queries complicate things.
+- [x] [#8](https://github.com/BR4YD3N-G/ProgrammingProject2_CS-2430/pull/8) BOTH: Summary of Work Done / Lessons Learned – one short paragraph reflecting on problems, tools, and what you’d improve.
 - [x] BOTH: Sources – cite any external references you used.
